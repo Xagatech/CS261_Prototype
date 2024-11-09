@@ -26,9 +26,20 @@
         </div>
         <div class="actions">
             <button class="action-button send-button">ส่งกลับคำร้อง</button>
-            <button class="action-button info-button">ขอข้อมูลเพิ่มเติม</button>
+            <button class="action-button info-button" onclick="showOverlay()">ขอข้อมูลเพิ่มเติม</button>
             <button class="action-button approve-button">อนุมัติคำร้อง</button>
         </div>
     </div>
+
+    <!-- กล่องข้อความแบบ Overlay -->
+    <div class="overlay" id="overlay">
+        <div class="overlay-content">
+            <p>ความคิดเห็นหรือข้อเสนอแนะ:</p>
+            <textarea rows="3"></textarea>
+            <button onclick="closeOverlay()">ส่ง</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
