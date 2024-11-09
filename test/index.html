@@ -9,7 +9,6 @@
 <body>
     <div class="container">
         <div class="header">
-            <div class="back-button">ย้อนกลับ</div>
             <div class="title">คำร้อง</div>
             <div class="profile-section">
                 <div class="teacher-name">อาจารย์ กดสอบ</div>
@@ -22,14 +21,23 @@
             </div>
         </div>
         <div class="sidebar">
-            <p>การแจ้งเตือน</p>
+        <div class="menu-bar">
+            <div class=" back-button ">
+            <div class="menu-item ">ย้อนกลับ</div>
         </div>
+
+            <div class="notification">
+                <img src="bell-icon.png" alt="แจ้งเตือน">
+                <button class="notification">การแจ้งเตือน</button>
+            </div>
+        </div>
+    </div>
+
         <div class="actions">
             <button class="action-button send-button">ส่งกลับคำร้อง</button>
             <button class="action-button info-button" onclick="showOverlay()">ขอข้อมูลเพิ่มเติม</button>
             <button class="action-button approve-button">อนุมัติคำร้อง</button>
         </div>
-    </div>
 
     <!-- กล่องข้อความแบบ Overlay -->
     <div class="overlay" id="overlay">

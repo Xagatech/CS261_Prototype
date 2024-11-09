@@ -2,87 +2,126 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-body {
     font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f0f0f0;
 }
+
 .container {
-    width: 100%;
-    max-width: 1200px;
-    background-color: #e5e5e5;
-    padding: 20px;
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: grid;
+    grid-template-areas:
+        "header header"
+        "sidebar main"
+        "actions actions";
+    grid-template-rows: 80px 1fr 80px;
+    grid-template-columns: 1fr 3fr;
     height: 100vh;
+}
+
+.header {
+    grid-area: header;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center; /* Center "คำร้อง" */
+    align-items: center;
+    padding: 0 20px;
+    border-bottom: 2px solid #ddd;
     position: relative;
 }
-.header {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 0;
-}
+
 .back-button {
-    padding: 10px;
-    border: 1px solid #888;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-.back-button:hover {
-    background-color: #d3d3d3;
-}
-.header .title {
-    font-size: 1.5em;
-}
-.profile-section {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-.teacher-name {
-    font-size: 1em;
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    font-size: 18px;
     color: #333;
 }
-.profile {
-    width: 50px;
-    height: 50px;
-    background-color: #c0c0c0;
-    border-radius: 8px;
+.title {
+    font-size: 20px;
+    font-weight: bold;
 }
-.main-content {
+
+.profile-section {
+    position: absolute;
+    right: 20px; /* Move profile section to the right side of the header */
     display: flex;
-    width: 100%;
-    flex-grow: 1;
+    align-items: center;
+}
+
+.teacher-name {
+    margin-right: 10px;
+    font-size: 18px;
+    color: #333;
+}
+
+.profile {
+    width: 40px;
+    height: 40px;
+    background-color: #ccc;
+    border-radius: 50%;
+}
+
+.main-content {
+    grid-area: main;
+    display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    background-color: #f9f9f9;
 }
-.content {
-    font-size: 1.2em;
-    text-align: center;
-}
+
 .central-image {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-    border-radius: 8px;
+    width: 80%;
+    max-width: 600px;
+    height: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+
+
 .sidebar {
+    grid-area: sidebar;
+    background-color: #f0f0f0;
+    padding: 20px;
+    font-size: 18px;
+    color: #333;
+    position: relative;
+}
+.back-button,
+.notification-button {
+    font-size: 18px;
+    color: #333;
+    background-color: #ffffff;
+    border: 1px solid #ccc; /* Adds a border around the button */
+    cursor: pointer;
+
+    padding: 10px 10px;
+
+    width: calc(45% - 10px); /* Make the buttons responsive inside the sidebar */
+
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.notification-button {
     position: absolute;
     bottom: 20px;
     left: 20px;
-    background-color: #dcdcdc;
-    padding: 10px;
-    border-radius: 8px;
+}
+
+.back-button:hover,
+.notification-button:hover {
+    background-color: #e0e0e0;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2); /* Shadow effect on hover */
+}
+
+
+.back-button {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+}
+.sidebar p {
+    position: absolute;
+    bottom: 20px; /* Position "การแจ้งเตือน" near the bottom */
+    left: 20px;
+    margin: 0;
 }
 .actions {
     position: absolute;
@@ -101,57 +140,93 @@ body {
     font-size: 1em;
     transition: background-color 0.3s;
 }
+
 .send-button {
-    background-color: #c0b0a0;
+    background-color: #d8cfcf;
+    color: #333;
 }
+
 .info-button {
-    background-color: #b0b0b0;
+    background-color: #e8d9d9;
+    color: #333;
 }
+
 .approve-button {
-    background-color: #a0c0a0;
+    background-color: #d8e8d8;
+    color: #333;
 }
-.send-button:hover {
-    background-color: #a89080;
+
+.action-button:hover {
+    opacity: 0.8;
 }
-.info-button:hover {
-    background-color: #909090;
-}
-.approve-button:hover {
-    background-color: #80a080;
-}
+
 .overlay {
-    display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
     justify-content: center;
     align-items: center;
 }
+
 .overlay-content {
     background-color: #fff;
     padding: 20px;
-    border-radius: 8px;
+    border-radius: 5px;
     width: 300px;
     text-align: center;
 }
+
 .overlay-content textarea {
     width: 100%;
     margin-top: 10px;
-    padding: 10px;
-    resize: none;
+    margin-bottom: 10px;
+    padding: 5px;
+    font-size: 14px;
 }
+
 .overlay-content button {
-    margin-top: 10px;
-    padding: 8px 16px;
-    border: none;
-    background-color: #909090;
-    color: #fff;
-    border-radius: 4px;
+    padding: 8px 20px;
+    font-size: 14px;
     cursor: pointer;
 }
-.overlay-content button:hover {
-    background-color: #707070;
+
+.show {
+    display: flex;
+}  
+
+.menu-bar {
+    width: 200px;
+    height: 85vh; /* ให้เมนูเต็มความสูงของหน้าจอ */
+    background-color: #e0e0e0;
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-item {
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid #b0b0b0;
+    background-color: #d0d0d0;
+    cursor: pointer;
+}
+
+.notification {
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: auto; /* ดันการแจ้งเตือนให้ติดอยู่ด้านล่าง */
+    background-color: #d0d0d0;
+    text-align: center;
+    border-radius: 8px;
+}
+
+.notification img {
+    width: 20px;
+    height: 20px;
 }
